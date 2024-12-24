@@ -1,0 +1,41 @@
+data:
+  supported_formats:
+    image: ['.jpg', '.png', '.jpeg']
+    audio: ['.wav', '.mp3', '.flac']
+    text: ['.txt', '.csv', '.json']
+  batch_size: 32
+  num_workers: 4
+  cache_dir: "cache"
+  
+preprocessing:
+  image:
+    target_size: [224, 224]
+    normalize: true
+    augmentation: false
+  audio:
+    sample_rate: 16000
+    duration: 5
+    mel_spec: false
+  text:
+    max_length: 512
+    lowercase: true
+    remove_punctuation: true
+
+models:
+  text:
+    name: "bert-base-uncased"
+    batch_size: 32
+  image:
+    name: "clip"
+    batch_size: 16
+  audio:
+    name: "wav2vec2-base"
+    batch_size: 16
+
+visualization:
+  reduction_method: "umap"
+  n_components: 2
+  figure_size: [10, 8]
+  interactive: true
+  save_plots: false
+  output_dir: "outputs/plots" 
